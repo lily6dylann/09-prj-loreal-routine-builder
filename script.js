@@ -30,6 +30,16 @@ const products = [
     description:
       "A leave-in serum that helps resurface hair, boost shine, and protect against heat for glossy, healthy-looking hair.",
   },
+  {
+    id: 4,
+    name: "Infallible Skin-ink Foundconcealer",
+    brand: "L'Oréal Paris",
+    category: "makeup",
+    image:
+      "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/makeup/face/foundation-makeup/infallible-skin-ink-foundconcealer/071249700495/071249700495_t1.png",
+    description:
+      "A longwear hybrid foundation-concealer that provides full coverage and a natural matte finish.",
+  },
   // Add more products here!
 ];
 
@@ -581,3 +591,50 @@ if (rtlLangs.some((lang) => userLang.startsWith(lang))) {
 // rtlToggle.textContent = "Toggle RTL";
 // rtlToggle.onclick = () => setRTLMode(document.documentElement.dir !== "rtl");
 // document.body.appendChild(rtlToggle);
+
+// Beginner carousel: shows 2 products at a time
+let carouselIndex = 0;
+const productsPerPage = 2;
+
+const carouselContainer = document.getElementById("carouselContainer");
+const carouselPrev = document.getElementById("carouselPrev");
+const carouselNext = document.getElementById("carouselNext");
+
+// Render carousel products
+function renderCarousel() {
+  const visibleProducts = products.slice(
+    carouselIndex,
+    carouselIndex + productsPerPage
+  );
+
+  carouselContainer.innerHTML = visibleProducts
+    .map(
+      (product) => `
+    <div class="product-card">
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>${product.brand}</p>
+      <div class="product-description">${product.description}</div>
+    </div>
+  `
+    )
+    .join("");
+
+  carouselPrev.disabled = carouselIndex === 0;
+  carouselNext.disabled = carouselIndex + productsPerPage >= products.length;
+}
+
+carouselPrev.addEventListener("click", () => {
+  if (carouselIndex > 0) {
+    carouselIndex -= productsPerPage;
+    renderCarousel();
+  }
+});
+carouselNext.addEventListener("click", () => {
+  if (carouselIndex + productsPerPage < products.length) {
+    carouselIndex += productsPerPage;
+    renderCarousel();
+  }
+});
+
+renderCarousel();
