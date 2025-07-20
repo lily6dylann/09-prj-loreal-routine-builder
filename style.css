@@ -396,6 +396,33 @@ body {
   background: #ffe5eb;
 }
 
+/* Product description tooltip */
+.product-description {
+  display: none;
+  position: absolute;
+  background: #fff;
+  color: #222;
+  border: 1px solid #e3a535;
+  border-radius: 8px;
+  padding: 10px;
+  z-index: 10;
+  width: 220px;
+  left: 110%;
+  top: 0;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.product-card {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.product-card:hover .product-description {
+  display: block;
+}
+
 /* --- RTL Support --- */
 html[dir="rtl"] body,
 html[dir="rtl"] .page-wrapper {

@@ -1,3 +1,38 @@
+/* --- Product Data --- */
+// This array is used by your app!
+const products = [
+  {
+    id: 1,
+    name: "Hydra Genius Moisturizer",
+    brand: "L'Oréal Paris",
+    category: "moisturizer",
+    image:
+      "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/skin-care/facial-moisturizers/bright-reveal-vitamin-c-glow-moisturizer/071249704233-t1-v2.png",
+    description: "Lightweight moisturizer for daily hydration.",
+  },
+  {
+    id: 2,
+    name: "Revitalift Derm Intensives Glycolic Acid Cleanser",
+    brand: "L'Oréal Paris",
+    category: "cleanser",
+    image:
+      "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/skin-care/facial-cleansers/revitalift-derm-intensives-glycolic-acid-cleanser/071249419854_t1-new.png",
+    description:
+      "Glycolic acid cleanser for gentle exfoliation and brighter skin.",
+  },
+  {
+    id: 3,
+    name: "Elvive Glycolic Gloss Leave-In Serum",
+    brand: "L'Oréal Paris",
+    category: "haircare",
+    image:
+      "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/hair-care/hair-serum/elvive-glycolic-gloss-leave-in-serum/071249701553-t1.png",
+    description:
+      "A leave-in serum that helps resurface hair, boost shine, and protect against heat for glossy, healthy-looking hair.",
+  },
+  // Add more products here!
+];
+
 /* Get references to DOM elements */
 const categoryFilter = document.getElementById("categoryFilter");
 const productsContainer = document.getElementById("productsContainer");
@@ -12,11 +47,24 @@ productsContainer.innerHTML = `
 `;
 
 /* Load product data from JSON file */
-async function loadProducts() {
-  const response = await fetch("products.json");
-  const data = await response.json();
-  return data.products;
-}
+// async function loadProducts() {
+//   const response = await fetch("products.json");
+//   const products = [
+//     {
+//       id: 1,
+//       name: "Hydra Genius Moisturizer",
+//       brand: "L'Oréal Paris",
+//       category: "moisturizer",
+//       // Updated to a working L'Oréal moisturizer image
+//       image:
+//         "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/skin-care/facial-moisturizers/bright-reveal-vitamin-c-glow-moisturizer/071249704233-t1-v2.png",
+//       description: "Lightweight moisturizer for daily hydration.",
+//     },
+//     // ...more products
+//   ];
+//   const data = await response.json();
+//   return data.products;
+// }
 
 /* Create HTML for displaying product cards */
 function displayProducts(products) {
@@ -24,10 +72,11 @@ function displayProducts(products) {
     .map(
       (product) => `
     <div class="product-card">
-      <img src="${product.image}" alt="${product.name}">
+      <img src="${product.image}" alt="${product.name}" width="80" height="80"/>
       <div class="product-info">
         <h3>${product.name}</h3>
         <p>${product.brand}</p>
+        <div class="product-description">${product.description}</div>
       </div>
     </div>
   `
@@ -59,31 +108,6 @@ chatForm.addEventListener("submit", (e) => {
 /* This script lets users select/unselect products by clicking cards,
 // visually marks selected cards, and updates the "Selected Products" section. */
 
-// Example product data (replace with your actual data source)
-const products = [
-  {
-    id: 1,
-    name: "Hydra Genius Moisturizer",
-    category: "moisturizer",
-    image: "img/hydra-genius.png",
-    description: "Lightweight moisturizer for daily hydration.",
-  },
-  {
-    id: 2,
-    name: "Revitalift Cleanser",
-    category: "cleanser",
-    image: "img/revitalift-cleanser.png",
-    description: "Gentle cleanser for all skin types.",
-  },
-  // Add more products as needed
-];
-
-/* 
-  This version displays each product's description in a clear, accessible way.
-  When you click the "More Info" button on a product card, the description appears in an overlay on the card.
-  Click "Close" or anywhere outside the overlay to hide it.
-*/
-
 // Store selected product IDs
 let selectedProductIds = [];
 
@@ -92,20 +116,10 @@ let openDescriptionId = null;
 
 // Render all products in the grid
 function renderProducts() {
-  productsContainer.innerHTML = "";
-  products.forEach((product) => {
-    // Create product card
-    const card = document.createElement("div");
-    card.className = "product-card";
-    card.dataset.id = product.id;
-
-    // Highlight if selected
-    if (selectedProductIds.includes(product.id)) {
-      card.classList.add("selected");
-    }
-
-    // Card content with a "More Info" button
-    card.innerHTML = `
+  productsContainer.innerHTML = products
+    .map(
+      (product) => `
+    <div class="product-card">
       <img src="${product.image}" alt="${product.name}" />
       <div class="product-info">
         <h3>${product.name}</h3>
@@ -121,7 +135,19 @@ function renderProducts() {
           <button class="close-desc-btn" aria-label="Close description">&times;</button>
         </div>
       </div>
-    `;
+    `
+    )
+    .join("");
+
+  products.forEach((product) => {
+    const card = document.querySelector(
+      `.product-card[data-id="${product.id}"]`
+    );
+
+    // Highlight if selected
+    if (selectedProductIds.includes(product.id)) {
+      card.classList.add("selected");
+    }
 
     // Click to select/unselect (but not when clicking info or overlay)
     card.addEventListener("click", (e) => {
@@ -158,8 +184,6 @@ function renderProducts() {
           renderProducts();
         }
       });
-
-    productsContainer.appendChild(card);
   });
 }
 
@@ -529,7 +553,7 @@ chatForm.addEventListener("submit", async (e) => {
 });
 
 // Render the initial product list
-renderProducts();
+renderProducts(products);
 // On page load, restore selections and render
 loadSelectedProducts();
 renderProducts();
