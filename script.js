@@ -312,9 +312,7 @@ function renderProductsGrid(productsToShow) {
 
   // If no products match, show a message
   if (productsToShow.length === 0) {
-    productsContainer.innerHTML = `
-      <div class="placeholder-message">No products found. Try a different search or category.</div>
-    `;
+    productsContainer.innerHTML = `<div class="no-products">No products found. Try a different search or category.</div>`;
   }
 }
 
@@ -657,3 +655,63 @@ carouselNext.addEventListener("click", () => {
 });
 
 renderCarousel();
+
+// Function to render products for a selected category
+function renderProductsByCategory(category) {
+  // Filter products by category
+  const filtered = products.filter((product) => product.category === category);
+
+  // If there are products, show them
+  if (filtered.length > 0) {
+    productsContainer.innerHTML = filtered
+      .map(
+        (product) => `
+      <div class="product-card">
+        <img src="${product.image}" alt="${product.name}" />
+        <h3>${product.name}</h3>
+        <p>${product.brand}</p>
+        <div class="product-description">${product.description}</div>
+      </div>
+    `
+      )
+      .join("");
+  } else {
+    // Show a cute "coming soon" message for empty categories
+    let message = "";
+    if (selectedCategory === "hair color") {
+      message = "Soon to be... haircolor! 🎨✨";
+    } else if (selectedCategory === "hair styling") {
+      message = "Hair styling coming soon! 💇‍♀️";
+    } else if (selectedCategory === "men's grooming") {
+      message = "Men's grooming on the way! 🧔";
+    } else if (selectedCategory === "suncare") {
+      message = "Suncare launching soon! ☀️";
+    } else if (selectedCategory === "fragrance") {
+      message = "Fragrance drops soon! 🌸";
+    } else {
+      message = "More products coming soon! 🚀";
+    }
+    productsContainer.innerHTML = `<div class="no-products">${message}</div>`;
+  }
+}
+
+// Show/hide placeholder cards based on selected category
+document
+  .getElementById("categoryFilter")
+  .addEventListener("change", function () {
+    const selected = this.value;
+    // Hide all placeholders
+    document
+      .querySelectorAll(".placeholder-card")
+      .forEach((card) => (card.style.display = "none"));
+    // Show the one for the selected category, if it exists
+    const placeholder = document.querySelector(
+      `.placeholder-card[data-category="${selected}"]`
+    );
+    if (placeholder) {
+      placeholder.style.display = "block";
+      // Optionally, clear out real products if you want only the message
+      productsContainer.innerHTML = "";
+      productsContainer.appendChild(placeholder);
+    }
+  });
