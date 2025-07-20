@@ -562,6 +562,25 @@ chatForm.addEventListener("submit", async (e) => {
   document.getElementById("userInput").value = "";
 });
 
+// Example render function for beginners
+function renderProducts(productsToShow) {
+  productsContainer.innerHTML = productsToShow
+    .map(
+      (product) => `
+    <div class="product-card">
+      <img src="${product.image}" alt="${product.name}" />
+      <h3>${product.name}</h3>
+      <p>${product.brand}</p>
+      <div class="product-description">${product.description}</div>
+    </div>
+  `
+    )
+    .join("");
+}
+
+// Show all products by default
+renderProducts(products);
+
 // Render the initial product list
 renderProducts(products);
 // On page load, restore selections and render

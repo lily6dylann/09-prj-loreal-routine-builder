@@ -19,11 +19,9 @@
 
 /* —— body + fonts —— */
 body {
-  background: var(--bg-light);
-  color: var(--text-dark);
-  font-family: var(--font-main);
-  display: flex;
-  justify-content: center;
+  background: #f9f7f6;
+  font-family: "Montserrat", Arial, sans-serif;
+  color: #444; /* Softer than black */
 }
 
 .page-wrapper {
@@ -37,12 +35,10 @@ body {
 
 /* header */
 .site-header {
-  display: flex;
-  align-items: center;
-  gap: 24px;
-  border-bottom: 2px solid var(--loreal-gold);
-  padding-bottom: 18px;
-  margin-bottom: 32px;
+  background: #fff6c1;
+  border-bottom: 2px solid #ffd600;
+  padding: 24px 0 16px 0;
+  text-align: center;
 }
 
 .logo {
@@ -50,32 +46,26 @@ body {
 }
 
 .site-title {
-  font-size: 2.2rem;
+  color: #bfae7c;
   font-weight: 700;
-  color: var(--loreal-red);
   letter-spacing: 1px;
 }
 
 /* category filter */
 .search-section {
-  margin-bottom: 28px;
-  display: flex;
-  justify-content: flex-start;
+  background: #fff6c1;
+  padding: 16px 0;
+  text-align: center;
+  border-bottom: 1px solid #ffd600;
 }
 
 #categoryFilter {
-  font-size: 1.1rem;
-  padding: 10px 18px;
-  border-radius: var(--border-radius);
-  border: 1.5px solid var(--loreal-gold);
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #ffd600;
   background: #fff;
-  color: var(--loreal-red);
-  font-weight: 500;
-  outline: none;
-  transition: border 0.2s;
-}
-#categoryFilter:focus {
-  border-color: var(--loreal-red);
+  color: #888;
+  font-size: 1rem;
 }
 
 /* chat section */
@@ -160,81 +150,86 @@ body {
 
 /* footer */
 .site-footer {
-  border-top: 2px solid var(--loreal-gold);
-  margin-top: 36px;
-  padding: 18px 0 8px 0;
-  text-align: center;
+  background: #fff6c1;
   color: #888;
-  font-size: 0.98rem;
-  background: #fff;
+  text-align: center;
+  padding: 18px 0 10px 0;
+  border-top: 1px solid #ffd600;
 }
 
-.site-footer nav a {
-  color: var(--loreal-red);
+.site-footer a {
+  color: #bfae7c;
   margin: 0 10px;
   text-decoration: none;
   font-weight: 500;
-  transition: color 0.2s;
 }
-.site-footer nav a:hover {
-  color: var(--loreal-gold);
+
+.site-footer a:hover {
+  text-decoration: underline;
 }
 
 /* products grid */
 .products-grid {
   display: grid;
   grid-template-columns: 1fr 1fr; /* 2 columns side by side */
-  gap: 24px;
-  margin: 32px 0;
+  gap: 32px 24px; /* vertical and horizontal spacing */
+  margin: 32px auto;
+  max-width: 700px;
   padding: 0 16px;
 }
 
 /* Responsive: stack to 1 column on small screens */
 @media (max-width: 700px) {
-  .products-grid {
+  .products-grid,
+  .selected-products {
     grid-template-columns: 1fr;
+    max-width: 340px;
+  }
+  .carousel-container {
+    width: 98vw;
   }
 }
 
 .product-card {
   background: #fff;
-  border-radius: 12px;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.07);
-  padding: 20px;
+  border-radius: 18px;
+  box-shadow: 0 2px 16px rgba(200, 200, 200, 0.13);
+  padding: 28px 16px;
   display: flex;
   flex-direction: column;
   align-items: center;
-  min-width: 200px;
-  max-width: 220px;
-  min-height: 280px;
-  position: relative;
-  transition: box-shadow 0.2s;
+  min-height: 320px;
   text-align: center;
+  transition: box-shadow 0.2s;
+  border: 2px solid #ffd600;
 }
 
 .product-card img {
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
   object-fit: contain;
-  margin-bottom: 12px;
-}
-
-.product-card .product-info {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  min-height: 110px;
+  margin-bottom: 16px;
+  border-radius: 10px;
+  background: #fff6c1;
+  border: 1.5px solid #ffd600;
 }
 
 .product-card h3 {
-  font-size: 16px;
-  margin-bottom: 8px;
+  color: #bfae7c;
+  font-size: 1.1rem;
+  margin: 12px 0 6px 0;
 }
 
 .product-card p {
-  font-size: 14px;
+  color: #888;
+  font-size: 0.98rem;
+  margin-bottom: 10px;
+}
+
+.product-description {
   color: #666;
+  font-size: 0.96rem;
+  margin-top: 8px;
 }
 
 /* Highlight selected product card */
@@ -258,17 +253,17 @@ body {
 
 /* Selected products */
 .selected-products {
-  background: linear-gradient(90deg, var(--loreal-gold) 0%, #fff8f7 100%);
-  border-radius: var(--border-radius);
-  box-shadow: var(--shadow);
-  padding: 18px 22px;
-  margin-bottom: 36px;
+  background: #fff6c1;
+  border-radius: 16px;
+  margin: 32px auto 0 auto;
+  max-width: 700px;
+  padding: 24px 16px;
+  box-shadow: 0 2px 12px rgba(200, 200, 200, 0.1);
+  border: 2px solid #ffd600;
 }
 
 .selected-products h2 {
-  color: var(--loreal-red);
-  font-size: 1.3rem;
-  margin-bottom: 12px;
+  color: #bfae7c;
 }
 
 /* Selected products list styling */
@@ -316,21 +311,21 @@ body {
 }
 
 .generate-btn {
-  background: var(--loreal-red);
-  color: var(--text-light);
+  background: #ffd600;
+  color: #bfae7c;
   border: none;
-  border-radius: var(--border-radius);
-  padding: 12px 28px;
-  font-size: 1.1rem;
-  font-weight: 700;
+  border-radius: 8px;
+  padding: 10px 22px;
+  font-size: 1rem;
+  font-weight: 500;
   cursor: pointer;
-  margin-top: 16px;
-  box-shadow: 0 2px 8px rgba(255, 0, 59, 0.08);
-  transition: background 0.2s;
+  margin-top: 10px;
+  box-shadow: 0 2px 8px rgba(200, 200, 200, 0.08);
+  transition: background 0.2s, color 0.2s;
 }
 .generate-btn:hover {
-  background: var(--loreal-gold);
-  color: var(--loreal-red);
+  background: #ffe066;
+  color: #a08c4e;
 }
 
 /* Product card info button */
@@ -443,18 +438,20 @@ body {
 }
 
 .carousel-arrow {
-  background: #e3a535;
-  color: #fff;
+  background: #ffd600;
+  color: #bfae7c;
   border: none;
   border-radius: 50%;
   width: 40px;
   height: 40px;
   font-size: 1.5rem;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: background 0.2s, color 0.2s;
+  box-shadow: 0 2px 8px rgba(200, 200, 200, 0.08);
 }
 .carousel-arrow:disabled {
-  background: #ccc;
+  background: #f3f3f3;
+  color: #ccc;
   cursor: not-allowed;
 }
 
