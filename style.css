@@ -19,9 +19,11 @@
 
 /* —— body + fonts —— */
 body {
-  background: #f9f7f6;
+  background: #f9f7f6; /* Light pastel background */
   font-family: "Montserrat", Arial, sans-serif;
-  color: #444; /* Softer than black */
+  color: #444; /* Softer text color */
+  margin: 0;
+  padding: 0;
 }
 
 .page-wrapper {
@@ -171,8 +173,8 @@ body {
 /* products grid */
 .products-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr; /* 2 columns side by side */
-  gap: 32px 24px; /* vertical and horizontal spacing */
+  grid-template-columns: 1fr 1fr; /* Two columns */
+  gap: 24px;
   margin: 32px auto;
   max-width: 700px;
   padding: 0 16px;
@@ -192,13 +194,9 @@ body {
 
 .product-card {
   background: #fff;
-  border-radius: 18px;
-  box-shadow: 0 2px 16px rgba(200, 200, 200, 0.13);
-  padding: 28px 16px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  min-height: 320px;
+  border-radius: 16px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 20px;
   text-align: center;
   transition: box-shadow 0.2s;
   border: 2px solid #ffd600;

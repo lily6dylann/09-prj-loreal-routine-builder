@@ -13,6 +13,7 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
     />
     <link rel="stylesheet" href="style.css" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
   </head>
 
   <body>
@@ -24,7 +25,8 @@
       </header>
 
       <!-- Category Filter -->
-      <div class="search-section">`
+      <div class="search-section">
+        `
         <select id="categoryFilter">
           <option value="" disabled selected>Choose a Category</option>
           <option value="cleanser">Cleansers</option>
@@ -40,29 +42,7 @@
       </div>
 
       <!-- Products Grid -->
-      <div id="productsContainer" class="products-grid">
-        <!-- Example placeholder for Hair Color -->
-        <div
-          class="product-card placeholder-card"
-          data-category="hair color"
-          style="display: none"
-        >
-          <div style="font-size: 1.3rem; margin-bottom: 10px">
-            Soon to be... haircolor! 🎨✨
-          </div>
-        </div>
-        <!-- Example placeholder for Hair Styling -->
-        <div
-          class="product-card placeholder-card"
-          data-category="hair styling"
-          style="display: none"
-        >
-          <div style="font-size: 1.3rem; margin-bottom: 10px">
-            Hair styling coming soon! 💇‍♀️
-          </div>
-        </div>
-        <!-- Add more placeholders as needed -->
-      </div>
+      <div id="productsContainer" class="products-grid"></div>
 
       <!-- Products Carousel -->
       <div class="carousel-wrapper">
@@ -114,52 +94,7 @@
       </footer>
     </div>
 
-    <!-- secrets.js can be removed when using Cloudflare Workers for API requests -->
-    <script src="secrets.js"></script>
+    <!-- secrets.js removed: not needed for Cloudflare Workers or public APIs -->
     <script src="script.js"></script>
-    <script>
-      const products = [
-        {
-          id: 1,
-          name: "Hydra Genius Moisturizer",
-          brand: "L'Oréal Paris",
-          category: "moisturizer",
-          image:
-            "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/skin-care/facial-moisturizers/bright-reveal-vitamin-c-glow-moisturizer/071249704233-t1-v2.png",
-          description: "Lightweight moisturizer for daily hydration.",
-        },
-        {
-          id: 2,
-          name: "Revitalift Bright Reveal Cleanser",
-          brand: "L'Oréal Paris",
-          category: "cleanser",
-          image:
-            "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/skin-care/cleanser/bright-reveal-brightening-daily-scrub-cleanser/071249365212-t1.png",
-          description:
-            "Daily scrub cleanser that gently exfoliates and brightens skin.",
-        },
-        {
-          id: 3,
-          name: "Elvive Glycolic Gloss Leave-In Serum",
-          brand: "L'Oréal Paris",
-          category: "haircare",
-          image:
-            "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/hair-care/hair-serum/elvive-glycolic-gloss-leave-in-serum/071249701553-t1.png",
-          description:
-            "A leave-in serum that helps resurface hair, boost shine, and protect against heat for glossy, healthy-looking hair.",
-        },
-        {
-          id: 4,
-          name: "Infallible Skin-ink Foundconcealer",
-          brand: "L'Oréal Paris",
-          category: "makeup",
-          image:
-            "https://www.lorealparisusa.com/-/media/project/loreal/brand-sites/oap/americas/us/products/makeup/face/foundation-makeup/infallible-skin-ink-foundconcealer/071249700495/071249700495_t1.png",
-          description:
-            "A longwear hybrid foundation-concealer that provides full coverage and a natural matte finish.",
-        },
-        // Add more products here!
-      ];
-    </script>
   </body>
 </html>
